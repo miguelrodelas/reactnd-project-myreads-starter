@@ -10,6 +10,7 @@ class Search extends Component {
     }
 
     searchBook = searchTerm => {
+        console.log(searchTerm);
         if (searchTerm === "") {    
             // Don't search if the input is empty
             this.setState({
@@ -36,7 +37,9 @@ class Search extends Component {
         return (
             <div className="search-books">
               <SearchBar searchBook={this.searchBook} />
-              <SearchResults books={this.state.books} />
+              <SearchResults 
+                books={ this.state.books }
+                updateShelf={ this.props.updateShelf } />
             </div>
         )
     }

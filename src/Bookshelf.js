@@ -5,7 +5,6 @@ import Book from './Book'
 // Currently reading, whant to read, read
 class Bookshelf extends Component {
 
-
   render() {
     return (
       <div className="bookshelf">
@@ -18,7 +17,7 @@ class Bookshelf extends Component {
           <ol className="books-grid">
           {this.props.books.map(book => (
             <li key={book.id}>              
-                <Book book={book} />             
+                <Book book={book} updateShelf={this.props.updateShelf} />             
             </li>
             ))}
           </ol>
