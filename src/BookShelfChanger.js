@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 // import PropTypes from 'prop-types'
 
 class BookShelfChanger extends Component {
@@ -12,13 +11,16 @@ class BookShelfChanger extends Component {
     }
 
     componentDidMount() {
-        BooksAPI.get(this.props.book.id)
-            .then((book) => {
-                this.setState({shelf: book.shelf})
-            })
-            .catch(e => {
-                console.log("book "+ this.props.book.title +" not found");
-            });
+        if (this.props.shelfForeachId.get(this.props.book.id)) {
+            this.setState({shelf: this.props.shelfForeachId.get(this.props.book.id)})
+        }
+        // BooksAPI.get(this.props.book.id)
+        //     .then((book) => {
+        //         this.setState({shelf: book.shelf})
+        //     })
+        //     .catch(e => {
+        //         console.log("book "+ this.props.book.title +" not found");
+        //     });
     }
     
 

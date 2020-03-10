@@ -11,7 +11,6 @@ class Search extends Component {
     }
 
     searchBook = (searchTerm) => {
-        console.log(searchTerm);
         if (searchTerm === "") {
             // Don't search if the input is empty
             this.setState({
@@ -19,11 +18,12 @@ class Search extends Component {
             });
             return;
         }
+        console.log(searchTerm);
         BooksAPI.search(searchTerm)
             .then(data => {
                 // When successfull, an array is returned. Otherwise, there is an error key in the result
                 if (data.error) {
-                    console.log(data.error);
+                    console.log(data);
                 } else {
                     this.setState({
                         books: data
@@ -40,6 +40,7 @@ class Search extends Component {
                 <SearchBar searchBook={this.searchBookThrottled} />
                 <SearchResults
                     books={this.state.books}
+                    shelfForeachId={ this.props.shelfForeachId }
                     updateShelf={this.props.updateShelf} />
             </div>
         )

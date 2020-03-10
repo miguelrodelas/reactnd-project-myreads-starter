@@ -13,7 +13,8 @@ class BooksApp extends React.Component {
     myBooks: {
       currentlyReading: [],
       wantToRead: [],
-      read: []
+      read: [],
+      shelfForeachId: new Map()
     }
   }
 
@@ -36,6 +37,14 @@ class BooksApp extends React.Component {
     this.getAllBooks();
   }
 
+  getShelfForeachId = (data) => {
+    let shelfForeachId = new Map();
+    data.map(book => (
+      shelfForeachId.set(book.id, book.shelf)
+    ));
+    return shelfForeachId;
+  }
+
   getAllBooks = () => {
     BooksAPI.getAll()
       .then(data => {
@@ -43,7 +52,8 @@ class BooksApp extends React.Component {
           myBooks: {
             currentlyReading: this.getBooksForShelf(data, "currentlyReading"),
             wantToRead:       this.getBooksForShelf(data, "wantToRead"),
-            read:             this.getBooksForShelf(data, "read")
+            read:             this.getBooksForShelf(data, "read"),
+            shelfForeachId:   this.getShelfForeachId(data)
           }
         });
       });
@@ -55,10 +65,12 @@ class BooksApp extends React.Component {
         <Route exact path='/' render={() => (
           <BooksList 
             myBooks={ this.state.myBooks }
+            shelfForeachId={ this.state.myBooks.shelfForeachId }
             updateShelf={ this.updateShelf } />
         )} />
         <Route exact path='/search' render={() => (
           <Search
+            shelfForeachId={ this.state.myBooks.shelfForeachId }
             updateShelf={ this.updateShelf }/>
         )} />
       </div>

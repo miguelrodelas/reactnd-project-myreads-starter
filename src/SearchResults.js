@@ -14,6 +14,7 @@ class SearchResults extends Component {
                         <li key = { book.id }>
                             <Book 
                                 book={ book } 
+                                shelfForeachId={ this.props.shelfForeachId }
                                 updateShelf={ this.props.updateShelf } />
                         </li>
                     ))}

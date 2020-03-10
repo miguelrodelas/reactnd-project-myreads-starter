@@ -16,13 +16,16 @@ class BooksList extends Component {
             <Bookshelf 
               type="currentlyReading" 
               books={this.props.myBooks.currentlyReading}
+              shelfForeachId={ this.props.shelfForeachId }
               updateShelf={this.props.updateShelf}  />
             <Bookshelf
               type="wantToRead" 
               books={this.props.myBooks.wantToRead}
+              shelfForeachId={ this.props.shelfForeachId }
               updateShelf={this.props.updateShelf}  />
             <Bookshelf 
               type="read" 
+              shelfForeachId={ this.props.shelfForeachId }
               books={this.props.myBooks.read}
               updateShelf={this.props.updateShelf}  />
           </div>
